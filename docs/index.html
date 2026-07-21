@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="auto">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="iOS OTA 安装 - 通过浏览器直接安装 iOS 应用">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>智慧强安 - OTA 安装</title>
+
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/dark.css">
+  <link rel="stylesheet" href="css/animation.css">
+
+  <!-- SVG Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📲</text></svg>">
+  <link rel="apple-touch-icon" href="images/app-icon.png">
+</head>
+<body>
+  <button id="themeToggle" class="theme-toggle" aria-label="切换主题">🌓</button>
+
+  <main class="container">
+    <!-- Header -->
+    <header class="app-header animate-fade-in">
+      <div class="app-icon">
+        <!-- Replace with <img src="images/app-icon.png" alt="App Icon"> when you have an icon -->
+        <div class="app-icon-placeholder">应</div>
+      </div>
+      <h1 class="app-name" data-app-name>智慧强安</h1>
+      <p class="app-version" data-version>v0.0.0</p>
+    </header>
+
+    <!-- Version Info -->
+    <section class="card animate-fade-in-up delay-1" id="versionCard">
+      <h2 class="card-title">应用信息</h2>
+      <div id="versionInfo">
+        <div class="skeleton skeleton-line"></div>
+        <div class="skeleton skeleton-line"></div>
+        <div class="skeleton skeleton-line" style="width: 60%"></div>
+      </div>
+    </section>
+
+    <!-- Install Button -->
+    <section class="card animate-fade-in-up delay-2">
+      <div class="install-section">
+        <a id="installBtn" class="btn-install" href="install.html">
+          <span class="spinner"></span>
+          <span class="btn-text">立即安装</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Release Notes -->
+    <section class="card animate-fade-in-up delay-3">
+      <h2 class="card-title">更新内容</h2>
+      <div id="releaseNotes" class="release-notes">
+        <div class="skeleton skeleton-line"></div>
+        <div class="skeleton skeleton-line"></div>
+        <div class="skeleton skeleton-line" style="width: 40%"></div>
+      </div>
+    </section>
+
+    <!-- Install Instructions -->
+    <section class="card animate-fade-in-up delay-4">
+      <h2 class="card-title">安装说明</h2>
+      <ol class="instruction-steps">
+        <li class="instruction-step">
+          请使用 <strong>iPhone / iPad</strong> 的 <strong>Safari 浏览器</strong> 打开此页面
+        </li>
+        <li class="instruction-step">
+          点击「立即安装」按钮，弹出提示后点击「<strong>允许</strong>」
+        </li>
+        <li class="instruction-step">
+          安装完成后，前往 <strong>设置 → 通用 → VPN 与设备管理</strong>，找到开发者证书并点击「<strong>信任</strong>」
+        </li>
+        <li class="instruction-step">
+          返回桌面即可打开应用
+        </li>
+      </ol>
+    </section>
+
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/browser.js"></script>
+  <script src="js/version.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
