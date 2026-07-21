@@ -2,18 +2,6 @@
    iOS OTA Distribution - Main App (Index Page)
    ============================================ */
 
-const APP_CONFIG = {
-  // ==== 必填配置 ====
-  repo: "username/repo",           // GitHub 仓库 (owner/repo)
-  appName: "应用名称",              // App 显示名称
-  bundleId: "com.example.app",     // Bundle Identifier
-  ipaFileName: "app.ipa",          // IPA 文件名 (上传到 Release 时的文件名)
-
-  // ==== 可选配置 ====
-  appIconInitial: "应",            // 无图标时显示的备选文字
-  basePath: "",                    // 子路径 (仓库型 Pages: /repo-name, 自定义域名: 空)
-};
-
 const App = {
   async init() {
     BrowserDetect.init();
