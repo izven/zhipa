@@ -82,11 +82,9 @@ const Utils = {
   parseReleaseNotes(text) {
     if (!text) return '<p class="text-secondary">暂无更新内容</p>';
 
-    // Remove leading/trailing whitespace
-    let html = text.trim();
-
-    // Check if it's already a list or has multiple lines
-    const lines = html.split("\n").filter(Boolean);
+    // Normalize line endings: CRLF → LF, then clean standalone CR
+    const normalized = text.trim().replace(/\r\n/g, "\n").replace(/\r/g, "");
+    const lines = normalized.split("\n").filter(Boolean);
 
     // If lines start with - or *, wrap in ul
     if (lines.some((l) => /^[-*]\s/.test(l.trim()))) {

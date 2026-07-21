@@ -69,7 +69,8 @@ const VersionManager = {
 
   parseReleaseData(data) {
     const tagName = data.tag_name || "";
-    const version = tagName.startsWith("v") ? tagName.substring(1) : tagName;
+    const releaseName = data.name || tagName;
+    const version = releaseName.startsWith("v") ? releaseName.substring(1) : releaseName;
 
     // Find IPA asset
     const ipaAsset = (data.assets || []).find(
@@ -79,7 +80,7 @@ const VersionManager = {
     return {
       version: version,
       tagName: tagName,
-      name: data.name || `v${version}`,
+      name: releaseName,
       body: data.body || "",
       publishedAt: data.published_at || data.created_at,
       htmlUrl: data.html_url,
