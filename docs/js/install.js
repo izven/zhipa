@@ -107,7 +107,7 @@ const InstallPage = {
         notesEl.innerHTML = Utils.parseReleaseNotes(release.body);
       }
     } catch (err) {
-      console.warn("Failed to load release info:", err.message);
+      console.warn("Failed to load release info:", err.message, err);
 
       // Fallback: use version from config if available
       if (APP_CONFIG.fallbackVersion) {
@@ -119,17 +119,27 @@ const InstallPage = {
         });
       }
 
-      // Show error state in release notes
+      // Show error state in release notes with specific message
       const notesEl = document.getElementById("releaseNotes");
       if (notesEl) {
-        let msg = "加载失败，请检查网络后重试";
+        let msg, icon;
         if (err.message.includes("403") || err.message.includes("限流")) {
           msg = "API 请求过于频繁，请稍后再试";
+          icon = "⏳";
+        } else if (err.message.includes("404") || err.message.includes("未找到")) {
+          msg = "未找到发布版本";
+          icon = "🔍";
+        } else if (err.message.includes("Failed to fetch") || err.message.includes("NetworkError") || err.message.includes("network")) {
+          msg = "无法连接到 GitHub API，请在服务器环境下打开此页面";
+          icon = "🌐";
+        } else {
+          msg = `请求失败: ${Utils.sanitizeHTML(err.message)}`;
+          icon = "⚠️";
         }
         notesEl.innerHTML = `
           <div class="error-state">
-            <div class="error-icon">⚠️</div>
-            <p>${Utils.sanitizeHTML(msg)}</p>
+            <div class="error-icon">${icon}</div>
+            <p>${msg}</p>
             <button id="retryBtn" class="btn-install" style="margin-top:16px;padding:10px 24px;font-size:14px;width:auto;">重新加载</button>
           </div>
         `;

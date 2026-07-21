@@ -7,7 +7,7 @@ const VersionManager = {
   cacheTTL: 10 * 60 * 1000, // 10 minutes
 
   getRepoFull() {
-    return window.APP_CONFIG?.repo || "";
+    return APP_CONFIG?.repo || "";
   },
 
   getRepoOwner() {
@@ -32,6 +32,8 @@ const VersionManager = {
     if (!apiUrl) {
       throw new Error("Repository not configured");
     }
+
+    console.log("Fetching release from:", apiUrl);
 
     const response = await fetch(apiUrl, {
       headers: {
@@ -95,7 +97,7 @@ const VersionManager = {
   getIPAUrl(tag, ipaFileName) {
     const [owner, repo] = this.getRepoFull().split("/");
     if (!owner || !repo) return "";
-    const file = ipaFileName || window.APP_CONFIG?.ipaFileName || "app.ipa";
+    const file = ipaFileName || APP_CONFIG?.ipaFileName || "app.ipa";
     return `https://github.com/${owner}/${repo}/releases/download/${tag}/${file}`;
   },
 
