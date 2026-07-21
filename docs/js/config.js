@@ -9,7 +9,7 @@ const APP_CONFIG = {
   repo: "izven/zhipa",            // GitHub 仓库 (owner/repo)
   appName: "智慧强安",              // App 显示名称
   bundleId: "com.demlution.iatianfangyetan",     // Bundle Identifier
-  ipaFileName: "app.ipa",          // IPA 文件名 (上传到 Release 时的文件名)
+  ipaFileName: "zhqa.ipa",          // IPA 文件名 (上传到 Release 时的文件名)
 
   // ==== 可选配置 ====
   appIconInitial: "应",            // 无图标时显示的备选文字
