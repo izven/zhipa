@@ -6,8 +6,7 @@
 
 ```
 ├── docs/                      ← GitHub Pages 根目录
-│   ├── index.html             ← 首页
-│   ├── install.html           ← 安装页面
+│   ├── index.html             ← 首页 / 安装页面
 │   ├── 404.html               ← 404 页面
 │   ├── CNAME                  ← 自定义域名 (可选)
 │   ├── .nojekyll              ← 禁用 Jekyll
@@ -18,8 +17,7 @@
 │   │   └── animation.css      ← 动画
 │   ├── js/
 │   │   ├── config.js          ← 配置文件
-│   │   ├── app.js             ← 首页逻辑
-│   │   ├── install.js         ← 安装页逻辑 (浏览器检测、itms-services)
+│   │   ├── install.js         ← 首页逻辑 (浏览器检测、OTA 安装、版本获取)
 │   │   ├── version.js         ← GitHub Release API 版本获取
 │   │   ├── browser.js         ← 浏览器/设备检测
 │   │   └── utils.js           ← 工具函数
