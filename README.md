@@ -23,7 +23,7 @@
 │   │   ├── version.js         ← GitHub Release API 版本获取
 │   │   ├── browser.js         ← 浏览器/设备检测
 │   │   └── utils.js           ← 工具函数
-│   └── images/                ← 存放 app-icon.png, banner.png
+│   └── images/                ← 存放 app-logo.png, banner.png
 │
 ├── .github/workflows/
 │   └── release.yml            ← GitHub Actions: 自动更新 manifest + 部署 Pages

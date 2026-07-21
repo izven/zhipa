@@ -17,7 +17,7 @@
 					<key>kind</key>
 					<string>display-image</string>
 					<key>url</key>
-					<string>https://izven.github.io/zhipa/images/app-icon.png</string>
+					<string>https://izven.github.io/zhipa/images/app-logo.png</string>
 					<key>needs-exposure</key>
 					<true/>
 				</dict>

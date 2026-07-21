@@ -65,7 +65,7 @@ jobs:
                     <key>kind</key>
                     <string>display-image</string>
                     <key>url</key>
-                    <string>https://${{ steps.version.outputs.owner }}.github.io/${{ steps.version.outputs.repo }}/images/app-icon.png</string>
+                    <string>https://${{ steps.version.outputs.owner }}.github.io/${{ steps.version.outputs.repo }}/images/app-logo.png</string>
                     <key>needs-exposure</key>
                     <true/>
                   </dict>
