@@ -28,16 +28,6 @@ const App = {
   },
 
   async loadVersionInfo() {
-    const versionContainer = document.getElementById("versionInfo");
-    if (!versionContainer) return;
-
-    // Show skeleton
-    versionContainer.innerHTML = `
-      <div class="skeleton skeleton-line"></div>
-      <div class="skeleton skeleton-line"></div>
-      <div class="skeleton skeleton-line" style="width: 60%"></div>
-    `;
-
     try {
       const release = await VersionManager.getLatestRelease();
       VersionManager.setCache(release);
@@ -46,25 +36,6 @@ const App = {
       document.querySelectorAll("[data-version]").forEach((el) => {
         el.textContent = `v${release.version}`;
       });
-
-      // Build info list
-      const now = new Date();
-      versionContainer.innerHTML = `
-        <ul class="info-list">
-          <li class="info-item">
-            <span class="info-label">最新版本</span>
-            <span class="info-value">${Utils.sanitizeHTML(release.version)}</span>
-          </li>
-          <li class="info-item">
-            <span class="info-label">更新时间</span>
-            <span class="info-value">${Utils.formatDateRelative(release.publishedAt)}</span>
-          </li>
-          <li class="info-item">
-            <span class="info-label">Build</span>
-            <span class="info-value">${Utils.sanitizeHTML(release.tagName)}</span>
-          </li>
-        </ul>
-      `;
 
       // Release notes
       const notesContainer = document.getElementById("releaseNotes");
@@ -78,56 +49,29 @@ const App = {
         installBtn.href = `${Utils.getBasePath()}/install.html?version=${encodeURIComponent(release.tagName)}`;
       }
     } catch (err) {
-      versionContainer.innerHTML = `
-        <div class="error-state">
-          <div class="error-icon">⚠️</div>
-          <p>${Utils.sanitizeHTML(err.message)}</p>
-          <p style="margin-top:8px;font-size:13px;color:var(--color-text-tertiary)">请检查网络连接或刷新重试</p>
-        </div>
-      `;
+      console.warn("Failed to load release info:", err.message);
     }
   },
 
   // Theme
   initTheme() {
-    const saved = localStorage.getItem("ota_theme");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    let theme = saved || "auto";
-    if (theme === "auto") {
-      theme = prefersDark ? "dark" : "light";
-    }
-    document.documentElement.setAttribute("data-theme", saved || "auto");
-    this.updateThemeIcon(saved || "auto");
+    const saved = localStorage.getItem("ota_theme") || "light";
+    document.documentElement.setAttribute("data-theme", saved);
+    this.updateThemeIcon(saved);
   },
 
   toggleTheme() {
-    const current = document.documentElement.getAttribute("data-theme");
-    let newTheme, savedTheme;
-    if (current === "dark") {
-      newTheme = "light";
-      savedTheme = "light";
-    } else if (current === "light") {
-      newTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-      savedTheme = "auto";
-    } else {
-      newTheme = "dark";
-      savedTheme = "dark";
-    }
-    document.documentElement.setAttribute("data-theme", newTheme);
-    localStorage.setItem("ota_theme", savedTheme);
-    this.updateThemeIcon(savedTheme);
+    const current = localStorage.getItem("ota_theme") || "light";
+    const next = current === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    localStorage.setItem("ota_theme", next);
+    this.updateThemeIcon(next);
   },
 
   updateThemeIcon(theme) {
     const btn = document.getElementById("themeToggle");
     if (!btn) return;
-    if (theme === "dark") {
-      btn.textContent = "☀️";
-    } else if (theme === "light") {
-      btn.textContent = "🌙";
-    } else {
-      btn.textContent = "🌓";
-    }
+    btn.textContent = theme === "dark" ? "☀️" : "🌙";
   },
 
   bindEvents() {
