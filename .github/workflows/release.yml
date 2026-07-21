@@ -59,7 +59,7 @@ jobs:
                     <key>kind</key>
                     <string>software-package</string>
                     <key>url</key>
-                    <string>https://github.com/${{ steps.version.outputs.owner }}/${{ steps.version.outputs.repo }}/releases/download/${{ steps.version.outputs.tag }}/zhqa.ipa</string>
+                    <string>https://github.com/${{ steps.version.outputs.owner }}/${{ steps.version.outputs.repo }}/releases/latest/download/zhqa.ipa</string>
                   </dict>
                   <dict>
                     <key>kind</key>

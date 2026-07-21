@@ -13,4 +13,5 @@ const APP_CONFIG = {
 
   // ==== 可选配置 ====
   appIconInitial: "应",            // 无图标时显示的备选文字
+  fallbackVersion: "1.0.0",         // API 不可用时显示的版本号
 };

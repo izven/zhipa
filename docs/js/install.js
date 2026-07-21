@@ -108,6 +108,36 @@ const InstallPage = {
       }
     } catch (err) {
       console.warn("Failed to load release info:", err.message);
+
+      // Fallback: use version from config if available
+      if (APP_CONFIG.fallbackVersion) {
+        const v = APP_CONFIG.fallbackVersion.startsWith("v")
+          ? APP_CONFIG.fallbackVersion
+          : `v${APP_CONFIG.fallbackVersion}`;
+        document.querySelectorAll("[data-version]").forEach((el) => {
+          el.textContent = v;
+        });
+      }
+
+      // Show error state in release notes
+      const notesEl = document.getElementById("releaseNotes");
+      if (notesEl) {
+        let msg = "加载失败，请检查网络后重试";
+        if (err.message.includes("403") || err.message.includes("限流")) {
+          msg = "API 请求过于频繁，请稍后再试";
+        }
+        notesEl.innerHTML = `
+          <div class="error-state">
+            <div class="error-icon">⚠️</div>
+            <p>${Utils.sanitizeHTML(msg)}</p>
+            <button id="retryBtn" class="btn-install" style="margin-top:16px;padding:10px 24px;font-size:14px;width:auto;">重新加载</button>
+          </div>
+        `;
+        document.getElementById("retryBtn")?.addEventListener("click", () => {
+          VersionManager.clearCache();
+          window.location.reload();
+        });
+      }
     }
   },
 

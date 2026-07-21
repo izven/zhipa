@@ -92,10 +92,9 @@ const VersionManager = {
     };
   },
 
-  getIPAUrl(version, ipaFileName) {
+  getIPAUrl(tag, ipaFileName) {
     const [owner, repo] = this.getRepoFull().split("/");
     if (!owner || !repo) return "";
-    const tag = version.startsWith("v") ? version : `v${version}`;
     const file = ipaFileName || window.APP_CONFIG?.ipaFileName || "app.ipa";
     return `https://github.com/${owner}/${repo}/releases/download/${tag}/${file}`;
   },
